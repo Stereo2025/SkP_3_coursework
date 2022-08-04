@@ -10,11 +10,11 @@ FORMAT = "%(asctime)s [%(levelname)s] %(message)s"
 logging.basicConfig(filename=PATH_MAIN_LOGS, level=logging.INFO, format=FORMAT)
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static")
 app.register_blueprint(config_blueprint)
 app.register_blueprint(bookmarks_blueprint)
 app.register_blueprint(posts_blueprint)
-app.config['JSON_AS_ASCII'] = False
+app.json.ensure_ascii = True
 
 
 @app.errorhandler(404)
