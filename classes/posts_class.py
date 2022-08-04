@@ -34,23 +34,23 @@ class Posts:
 
     def get_post_by_keyword(self, keyword: str) -> list[dict]:
         """Показывает посты по ключевому слову"""
-
-        if not isinstance(keyword, str):
-            raise TypeError("Имя должно быть строковым значением")
-
-        if not keyword.isalpha():
-            raise ValueError("Имя должно содержать только буквы")
+        #
+        # if not isinstance(keyword, str):
+        #     raise TypeError("Имя должно быть строковым значением")
+        #
+        # if not keyword.isalpha():
+        #     raise ValueError("Имя должно содержать только буквы")
 
         return [post for post in self.load_data() if str(keyword).lower() in post['content'].lower().split(' ')]
 
     def get_post_by_pk(self, pk: int) -> dict:
         """Показывает посты по его pk"""
 
-        if not isinstance(pk, int):
-            raise TypeError("Ключ должен быть целым числом")
-
-        if pk < 0:
-            raise ValueError("Ключ должен быть положительным числом")
+        # if not isinstance(pk, int):
+        #     raise TypeError("Ключ должен быть целым числом")
+        #
+        # if pk < 0:
+        #     raise ValueError("Ключ должен быть положительным числом")
 
         for post in self.load_data():
             if int(pk) == post['pk']:
