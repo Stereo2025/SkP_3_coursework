@@ -24,4 +24,10 @@ class Comments:
     def get_some_comment(self, post_id: int) -> list[dict]:
         """Возвращает комментарий по его id"""
 
+        if not isinstance(post_id, int):
+            raise TypeError("Ключ должен быть целым числом")
+
+        if post_id < 0:
+            raise ValueError("Ключ должен быть положительным числом")
+
         return [uid for uid in self.load_comments() if int(post_id) == uid['post_id']]

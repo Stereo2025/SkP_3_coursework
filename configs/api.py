@@ -1,13 +1,13 @@
 import os
 import logging
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, abort
 from classes.posts_class import Posts
-from global_variables import DATA_PATH
+from global_variables import DATA_PATH, PATH_LOGS_CONFIG
 
 
 posts = Posts(DATA_PATH)
 
-path = os.path.join("logs", "config.log")
+path = os.path.join(PATH_LOGS_CONFIG)
 
 # создание логера
 logger_api = logging.getLogger("config")
@@ -30,7 +30,10 @@ def page_post_form():
     """Возвращает полный список постов в виде списка json"""
 
     logger_api.info("запрос всех постов")
-    return jsonify(posts.load_data())
+    post = posts.load_data()
+    if not post:
+        abort(404)
+    return jsonify(post)
 
 
 @config_blueprint.route("/api/posts/<int:post_id>", methods=["GET"])
@@ -38,7 +41,10 @@ def page_post_pk(post_id):
     """Возвращает один пост в виде словаря json."""
 
     logger_api.info(f"запрос постов по {post_id}")
-    return jsonify(posts.get_post_by_pk(post_id))
+    post = posts.get_post_by_pk(post_id)
+    if not post:
+        abort(404)
+    return jsonify(post)
 
 
 @config_blueprint.route("/api/posts/<username>", methods=["GET"])
@@ -46,4 +52,14 @@ def page_post_name(username):
     """Возвращает пост по имени пользователя в словаре json"""
 
     logger_api.info(f"запрос постов по {username}")
-    return jsonify(posts.get_post_by_user_name(username))
+    post = posts.get_post_by_user_name(username)
+    if not post:
+        abort(404)
+    return jsonify(post)
+
+
+@config_blueprint.errorhandler(404)
+def page_400_error(error):
+    """ Обработчик ошибок на стороне сервера"""
+
+    return jsonify({"Error": 'Information Not Found'}), 404
