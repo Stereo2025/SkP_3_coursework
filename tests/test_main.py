@@ -15,8 +15,8 @@ class TestMain:
         assert response.status_code == 200
 
     def test_search_page(self):
-        params = {'word': "Смотрите"}
-        response = app.test_client().get('/search/', query_string=params)
+        result = {'word': "Смотрите"}
+        response = app.test_client().get('/search/', query_string=result)
         assert response.status_code == 200
 
     def test_users_page(self):
