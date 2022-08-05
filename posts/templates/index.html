@@ -16,7 +16,7 @@
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#skyprogram"></use>
             </svg>
         </a>
-        <a href="/search/">&ensp;&ensp;<img src="../static/img/eye.png" width="35">
+        <!--<a href="/search/">&ensp;<img src="/static/img/eye.png" width="35"> -->
             <a href="/bookmarks" class="header__bookmark-btn">
                 <img src="/static/img/bookmark.png" alt="" class="header__bookmark-icon" width="28">
                 <span class="header__bookmark-counter">{{ comment }}</span></a>
@@ -24,6 +24,11 @@
     </div>
 </header>
 <main class="container">
+    <div class="search">
+        <form action="/search" class="search__form">
+            <input type="search" name="word" class="search__input">
+        </form>
+    </div>
     {% for post in all_posts %}
     <section class="items">
         <div class="items__item item">

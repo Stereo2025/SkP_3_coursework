@@ -34,11 +34,11 @@ class Posts:
 
     def get_post_by_keyword(self, keyword: str) -> list[dict]:
         """Показывает посты по ключевому слову"""
-        #
+
         # if not isinstance(keyword, str):
         #     raise TypeError("Имя должно быть строковым значением")
         #
-        # if not keyword.isalpha():
+        # if not keyword:
         #     raise ValueError("Имя должно содержать только буквы")
 
         return [post for post in self.load_data() if str(keyword).lower() in post['content'].lower().split(' ')]
@@ -59,13 +59,13 @@ class Posts:
     def get_post_by_tagname(self, tagname: str) -> list[dict]:
         """Показывает посты по тэгнэйму"""
 
-        if not isinstance(tagname, str):
-            raise TypeError("Имя должно быть строковым значением")
+        # if not isinstance(tagname, str):
+        #     raise TypeError("Имя должно быть строковым значением")
+        #
+        # if not tagname.startswith('#'):
+        #     raise ValueError("Тэг должен начинаться с #")
 
-        if not tagname.startswith('#'):
-            raise ValueError("Тэг должен начинаться с #")
-
-        return [tag for tag in self.load_data() if tagname in tag['content']]
+        return [tag for tag in self.get_post_by_keyword(tagname) if tagname in tag['content']]
 
     def view_post(self, post_uid: int) -> dict:
         """Добавляет ссылки на все посты с хэштэг словом"""
