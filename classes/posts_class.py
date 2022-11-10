@@ -44,7 +44,7 @@ class Posts:
         return [post for post in self.load_data() if str(keyword).lower() in post['content'].lower().split(' ')]
 
     def get_post_by_pk(self, pk: int) -> dict:
-        """Показывает посты по его pk"""
+        """Показывает пост по его pk"""
 
         # if not isinstance(pk, int):
         #     raise TypeError("Ключ должен быть целым числом")

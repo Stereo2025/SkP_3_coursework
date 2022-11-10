@@ -37,12 +37,6 @@ class TestPosts:
         assert type(post.get_post_by_keyword('Вот')) == list, 'Возвращается не list[dict]'
         assert len(post.get_post_by_keyword('Вот')) > 0, "Возвращается пустой list[dict]"
 
-    # @pytest.mark.parametrize('input_str, exceptions', search_for_posts_exceptions)
-    # def test_search_for_posts_exceptions(self, input_str, exceptions):
-    #     post = Posts(DATA_PATH)
-    #     with pytest.raises(exceptions):
-    #         post.get_post_by_keyword(self, input_str)
-
     # def test_get_post_by_keyword_type_error(self):
     #     post = Posts(DATA_PATH)
     #     with pytest.raises(TypeError):
