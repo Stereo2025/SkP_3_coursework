@@ -1,4 +1,4 @@
-from main import app
+from app import app
 
 data_keys = {'poster_name', 'poster_avatar', 'pic', 'content',
              'views_count', 'likes_count', 'pk'}
