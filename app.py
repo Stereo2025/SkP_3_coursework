@@ -5,10 +5,8 @@ from bookmarks.views import bookmarks_blueprint
 from posts.views import posts_blueprint
 from global_variables import PATH_MAIN_LOGS
 
-
 FORMAT = "%(asctime)s [%(levelname)s] %(message)s"
 logging.basicConfig(filename=PATH_MAIN_LOGS, level=logging.INFO, format=FORMAT)
-
 
 app = Flask(__name__, static_folder="static")
 app.register_blueprint(config_blueprint)
@@ -34,4 +32,7 @@ def page_500_error(error):
 
 
 if __name__ == "__main__":
-    app.run()
+    from waitress import serve
+
+    serve(app, host="0.0.0.0", port=8080)
+    # app.run()
